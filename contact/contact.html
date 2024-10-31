@@ -786,82 +786,87 @@
 							data-settings="{&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;button_width&quot;:&quot;100&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}"
 							data-widget_type="form.default">
 							<div class="elementor-widget-container">
-								<form class="elementor-form" action="https://sheetdb.io/api/v1/4xpmqd3yyo514"
-									method="post" id="sheetdb">
-									<input type="hidden" name="post_id" value="171">
-									<input type="hidden" name="form_id" value="faa7c74">
-									<input type="hidden" name="referer_title" value="Contact us">
-
-									<input type="hidden" name="queried_id" value="171">
-
+								<form method="post" id="contactSubmit">
 									<div class="elementor-form-fields-wrapper elementor-labels-above">
 										<div
 											class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-50">
 											<label for="form-field-name" class="elementor-field-label">
 												Name </label>
-											<input size="1" type="text" name="form_fields[name]" id="form-field-name"
+											<input type="text" name="name"
 												class="elementor-field elementor-size-md  elementor-field-textual"
-												placeholder="Name" value="">
+												placeholder="Name">
 										</div>
 										<div
 											class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_629fcc8 elementor-col-50">
 											<label for="form-field-field_629fcc8" class="elementor-field-label">
-												Company </label>
-											<input size="1" type="text" name="form_fields[field_629fcc8]"
-												id="form-field-field_629fcc8"
+												College/Organisation </label>
+											<input type="text" name="college"
 												class="elementor-field elementor-size-md  elementor-field-textual"
-												placeholder="Company" value="">
+												placeholder="Company">
 										</div>
 										<div
 											class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-email elementor-col-50 elementor-field-required">
 											<label for="form-field-email" class="elementor-field-label">
 												Phone </label>
-											<input size="1" type="tel" name="form_fields[email]" id="form-field-email"
+											<input type="tel" name="phone"
 												class="elementor-field elementor-size-md  elementor-field-textual"
-												placeholder="Phone" required="required" aria-required="true"
-												pattern="[0-9()#&amp;+*-=.]+"
-												title="Only numbers and phone characters (#, -, *, etc) are accepted."
-												value="">
+												placeholder="Phone" required="required" aria-required="true">
 
 										</div>
 										<div
 											class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-field_c7e017b elementor-col-50 elementor-field-required">
 											<label for="form-field-field_c7e017b" class="elementor-field-label">
 												Email </label>
-											<input size="1" type="email" name="form_fields[field_c7e017b]"
-												id="form-field-field_c7e017b"
+											<input type="email" name="email"
 												class="elementor-field elementor-size-md  elementor-field-textual"
-												placeholder="Email" required="required" aria-required="true" value="">
+												placeholder="Email" required="required" aria-required="true">
 										</div>
 										<div
 											class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-field_d707a6e elementor-col-100 elementor-field-required">
 											<label for="form-field-field_d707a6e" class="elementor-field-label">
 												Subject </label>
-											<input size="1" type="text" name="form_fields[field_d707a6e]"
-												id="form-field-field_d707a6e"
+											<input type="text" name="subject"
 												class="elementor-field elementor-size-md  elementor-field-textual"
-												placeholder="Subject" required="required" aria-required="true" value="">
+												placeholder="Subject" required="required" aria-required="true">
 										</div>
 										<div
 											class="elementor-field-type-textarea elementor-field-group elementor-column elementor-field-group-message elementor-col-100">
 											<label for="form-field-message" class="elementor-field-label">
 												Message </label>
 											<textarea class="elementor-field-textual elementor-field  elementor-size-md"
-												name="form_fields[message]" id="form-field-message" rows="4"
-												placeholder="Message"></textarea>
+												name="message" rows="4" placeholder="Message"></textarea>
 										</div>
+										<div id="Cmsg"></div>
 										<div
 											class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
-											<button class="elementor-button elementor-size-md" type="submit">
+											<button class="elementor-button elementor-size-sm" type="submit">
 												<span class="elementor-button-content-wrapper">
 													<span class="elementor-button-icon">
-														<i aria-hidden="true" class="far fa-envelope"></i> </span>
-													<span class="elementor-button-text">Send Message</span>
+														<i aria-hidden="true" class="far fa-envelope"></i> Send
+														Message</span>
 												</span>
 											</button>
 										</div>
 									</div>
 								</form>
+								<script>
+									jQuery('#contactSubmit').on('submit', function (e) {
+										e.preventDefault();
+										jQuery('#Cmsg').html('Please wait...');
+										jQuery('#btn-Submit').attr('disabled', true);
+										jQuery.ajax({
+											url: 'https://script.google.com/macros/s/AKfycbzNxa3iRJiCmaErV_qXlMgVDKy6fGmK2xbdHLeR4CcULo0CJRkCLBgSSq-gg1uY54o/exec',
+											type: 'post',
+											data: jQuery('#contactSubmit').serialize(),
+											success: function (result) {
+												jQuery('#contactSubmit')[0].reset();
+												jQuery('#Cmsg').html('Thank You');
+												jQuery('#btn-Submit').attr('disabled', false);
+												// window.location.href='https://google.com';
+											}
+										});
+									});
+								</script>
 							</div>
 						</div>
 					</div>
@@ -1045,8 +1050,8 @@
 															<input type="text"
 																class="input elementor-field elementor-size-sm  elementor-field-textual"
 																name="email" placeholder="Email" required="required">
-																<div id="msg"></div>
-														</div>														
+															<div id="msg"></div>
+														</div>
 														<div
 															class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-33 e-form__buttons">
 															<button class="elementor-button elementor-size-sm"
